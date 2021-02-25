@@ -38,6 +38,15 @@ func (w *Water) Update() error {
 		}
 	}
 
+	// If running from a touch device (mobile, web) use the touch position.
+	if t := ebiten.TouchIDs(); t != nil {
+		x, y := ebiten.TouchPosition(t[0])
+		idx := y*Width + x
+		if idx > 0 && idx < (Width*Height) {
+			w.prev[idx] = force
+		}
+	}
+
 	w.buffer = make([]byte, Width*Height*4)
 	for y := 1; y < Height-1; y++ {
 		for x := 1; x < Width-1; x++ {
