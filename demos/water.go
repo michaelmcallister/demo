@@ -82,6 +82,6 @@ func (w *Water) Draw(screen *ebiten.Image) {
 }
 
 // Layout returns a static width and height.
-func (*Water) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeight int) {
+func (*Water) Layout(_, _ int) (int, int) {
 	return Width, Height
 }

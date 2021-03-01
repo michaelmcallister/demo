@@ -54,7 +54,7 @@ func (r *Runner) Draw(screen *ebiten.Image) {
 }
 
 // Layout takes the outside size (e.g., the window size) and returns the (logical) screen size.
-func (*Runner) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeight int) {
+func (*Runner) Layout(_, _ int) (int, int) {
 	return demos.Width, demos.Height
 }
 
@@ -62,6 +62,7 @@ func main() {
 	ebiten.SetWindowSize(demos.Width, demos.Height)
 	ebiten.SetWindowTitle("Various small graphics demos")
 	l := list.New()
+	l.PushBack(&demos.Plasma{})
 	l.PushBack(&demos.Water{})
 	if err := ebiten.RunGame(NewRunner(l)); err != nil {
 		log.Fatal(err)
